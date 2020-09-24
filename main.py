@@ -1,6 +1,7 @@
 import sys
 import socket 
 import requests
+from urllib3.exceptions import InsecureRequestWarning
 
 with open('./ascii_art.txt', 'r') as f:
     print(f.read())
@@ -17,6 +18,7 @@ def getIpFromHost(hostname, port):
         return("FAILED")
 
 def getStatusCode(hostname, port):
+    requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
     if port == 80:
         schema = "http://"
     if port == 443:
@@ -29,6 +31,7 @@ def getStatusCode(hostname, port):
         return("FAILED")
     
 def getStatusMessage(hostname, port):
+    requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
     if port == 80:
         schema = "http://"
     if port == 443:
@@ -89,6 +92,7 @@ for host in hosts_file:
         valid_hosts.append(host.strip())
     if httpsIP == "FALIED" or httpsStatusCode == 400 or httpsStatusCode == "FAILED" and host not in invalid_hosts:
         invalid_hosts.append(host.strip())
+        valid_hosts.remove(host.strip())
     
     # Prints out results
     print("Hostname : "+host.strip()) 
