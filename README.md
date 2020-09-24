@@ -25,7 +25,7 @@ As of now, it will resolve the subdomains and output a file. It also gets the HT
 
 ## To-Do list 
 
-1. ~~ Make DNS queries and get the IP address related to the subdomain list ~~
-1. ~~ Get the HTTP status code and status message ~~
-1. Make output files of subdomains that work and subdomains that don't 
-1. Try every valid IP address with every subdomin that did not work on but was still found with the tools
+- [x] Make DNS queries and get the IP address related to the subdomain list 
+- [x] Get the HTTP status code and status message
+- Make output files of subdomains that work and subdomains that don't 
+- Try every valid IP address with every subdomin that did not work on but was still found with the tools
