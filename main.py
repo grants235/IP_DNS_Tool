@@ -22,7 +22,7 @@ def getStatusCode(hostname, port):
     if port == 443:
         schema = "https://"
     try:
-        r = requests.head(schema+host.strip()+"/", timeout=2)
+        r = requests.head(schema+host.strip()+"/", timeout=2, verify=False)
         statusCode = r.status_code
         return(statusCode)
     except:
@@ -34,7 +34,7 @@ def getStatusMessage(hostname, port):
     if port == 443:
         schema = "https://"
     try:
-        r = requests.head(schema+host.strip()+"/", timeout=2)
+        r = requests.head(schema+host.strip()+"/", timeout=2, verify=False)
         statusMessage = r.reason
         return(statusMessage)
     except:
@@ -61,7 +61,6 @@ if(len(sys.argv) != 2):
 hosts_file = open(sys.argv[1],'r')
 for host in hosts_file:
     hosts.append(host.strip())
-    failed = 0
     
     
     # Getting IP address to http://<host>
@@ -77,8 +76,7 @@ for host in hosts_file:
     # Getting status code for https://<host>
     httpsStatusCode = getStatusCode(host, 443)
     httpsStatusMessage = getStatusMessage(host, 443)
-    
-    
+ 
     
     # Adds IP address to master lists
     if httpIP != "1.1.1.1" and httpIP not in valid_ips and httpIP != "FAILED":
@@ -100,13 +98,13 @@ for host in hosts_file:
     print("Status Code (443): ", httpsStatusCode)
     print("\n")
     
-    
 hosts_file.close()
 
 # Creates and writes the output files
 listToFile("output1_IPs.txt", valid_ips)
 listToFile("output2_suscessful_subdomains.txt", valid_hosts)
 listToFile("output3_failed_subdomains.txt", invalid_hosts)
+
 
 
 

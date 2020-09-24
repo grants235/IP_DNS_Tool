@@ -101,7 +101,6 @@ isit.admin.airbnb.com
 it.airbnb.com
 it.trend.next.airbnb.com
 ivr-next.airbnb.com
-ivr.airbnb.com
 ja.airbnb.com
 join.airbnb.com
 ka.airbnb.com
