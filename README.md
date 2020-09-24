@@ -27,5 +27,5 @@ As of now, it will resolve the subdomains and output a file. It also gets the HT
 
 - [x] Make DNS queries and get the IP address related to the subdomain list 
 - [x] Get the HTTP status code and status message
-- Make output files of subdomains that work and subdomains that don't 
+- [x] Make output files of subdomains that work and subdomains that don't (working but still have a few false positives)
 - Try every valid IP address with every subdomin that did not work on but was still found with the tools
