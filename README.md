@@ -4,7 +4,8 @@ This is a tool that can take a list of subdomains and more reliably check if the
 
 ## Note
 
-***Please note that this is still a work in progess. ***
+***Please note that this is still a work in progess.***
+
 As of now, it will resolve the subdomains and output a file. It also gets the HTTP status code and message but nothing else. See the to-do list down below.
 
 ## Requrements
@@ -24,4 +25,7 @@ As of now, it will resolve the subdomains and output a file. It also gets the HT
 
 ## To-Do list 
 
-1. 
+1. ~~ Make DNS queries and get the IP address related to the subdomain list ~~
+1. ~~ Get the HTTP status code and status message ~~
+1. Make output files of subdomains that work and subdomains that don't 
+1. Try every valid IP address with every subdomin that did not work on but was still found with the tools
