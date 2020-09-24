@@ -2,17 +2,10 @@ import sys
 import socket 
 import requests
 
-print("-----------")
-print("IP/DNS Tool")
-print("-----------")
-
-# Checks to see if host file is supplied
-hosts=[]
-valid_ips=[]
-if(len(sys.argv) != 2):
-    print("no hosts found.")
-    exit()  
-
+with open('./ascii_art.txt', 'r') as f:
+    print(f.read())
+    
+    
 def getIpFromHost(hostname, port):
     try:
         host_ip = socket.getaddrinfo(hostname.strip(), port)
@@ -31,12 +24,39 @@ def getStatusCode(hostname, port):
     try:
         r = requests.head(schema+host.strip()+"/", timeout=2)
         statusCode = r.status_code
-        statusMessage = r.reason
-        status = str(statusCode) + " " + statusMessage
-        return(status)
+        return(statusCode)
     except:
         return("FAILED")
+    
+def getStatusMessage(hostname, port):
+    if port == 80:
+        schema = "http://"
+    if port == 443:
+        schema = "https://"
+    try:
+        r = requests.head(schema+host.strip()+"/", timeout=2)
+        statusMessage = r.reason
+        return(statusMessage)
+    except:
+        return("FAILED")
+    
+def listToFile(fileName, list):
+    output=open(fileName, "w")
+    for item in sorted(list):
+        output.write(item)
+        output.write("\n")
+    output.close()
+    return
 
+# Checks to see if host file is supplied
+hosts=[]
+valid_hosts=[]
+valid_ips=[]
+invalid_hosts=[]
+if(len(sys.argv) != 2):
+    print("no hosts found.")
+    exit()  
+    
 
 hosts_file = open(sys.argv[1],'r')
 for host in hosts_file:
@@ -52,22 +72,27 @@ for host in hosts_file:
      
     # Getting status code for http://<host>
     httpStatusCode = getStatusCode(host, 80)
+    httpStatusMessage = getStatusMessage(host, 80)
     
     # Getting status code for https://<host>
     httpsStatusCode = getStatusCode(host, 443)
+    httpsStatusMessage = getStatusMessage(host, 443)
     
     
     
-    # Processes http IP
+    # Adds IP address to master lists
     if httpIP != "1.1.1.1" and httpIP not in valid_ips and httpIP != "FAILED":
         valid_ips.append(httpIP)
-        
-    # Processes https IP    
     if httpsIP != "1.1.1.1" and  httpsIP not in valid_ips and httpsIP != "FAILED":
         valid_ips.append(httpsIP)
 
-
+    # Add domains to master lists
+    if httpsIP in valid_ips and httpsStatusCode != 400 and host not in valid_hosts:
+        valid_hosts.append(host.strip())
+    if httpsIP == "FALIED" or httpsStatusCode == 400 or httpsStatusCode == "FAILED" and host not in invalid_hosts:
+        invalid_hosts.append(host.strip())
     
+    # Prints out results
     print("Hostname : "+host.strip()) 
     print("IP (80): "+ httpIP) 
     print("IP (443): "+ httpsIP)
@@ -78,9 +103,10 @@ for host in hosts_file:
     
 hosts_file.close()
 
+# Creates and writes the output files
+listToFile("output1_IPs.txt", valid_ips)
+listToFile("output2_suscessful_subdomains.txt", valid_hosts)
+listToFile("output3_failed_subdomains.txt", invalid_hosts)
 
-output1=open("output1_IPs.txt", "w")
-for ip in sorted(valid_ips):
-    output1.write(ip)
-    output1.write("\n")
-output1.close()
+
+

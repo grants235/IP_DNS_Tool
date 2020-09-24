@@ -295,7 +295,6 @@ isit.dev.airbnb.com
 is.m.airbnb.com
 it.airbnb.com
 it.trend.next.airbnb.com
-ivr.airbnb.com
 ivr-next.airbnb.com
 ivr.next.airbnb.com
 iw.airbnb.com
