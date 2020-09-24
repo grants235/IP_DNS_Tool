@@ -9,3 +9,9 @@ This is a tool that can take a list of subdomains and more reliably check if the
 ## Usage
 
 ``` python main.py <file of hosts newline seperated> ```
+
+## Other Notes
+
+1. The host.txt and host2.txt files are demo files to show the format and test the script
+1. The ouput files are the files that the script creates. In this case, they are the output for the demo host files
+
