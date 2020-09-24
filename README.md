@@ -8,4 +8,4 @@ This is a tool that can take a list of subdomains and more reliably check if the
 
 ## Usage
 
-> python main.py <file of hosts newline seperated>
+``` python main.py <file of hosts newline seperated> ```
