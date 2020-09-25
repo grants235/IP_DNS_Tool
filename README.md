@@ -11,12 +11,16 @@ As of now, it will resolve the subdomains and output a file. It also gets the HT
 ## Requrements
 
 - Python 3.7
-- Required python modules:
+- Required python modules (all inside the requirements.txt file for easy install):
     - requests
 
 ## Usage
 
-``` python main.py <file of hosts newline seperated> ```
+``` 
+python -m pip install requirements.txt
+python main.py <file of hosts newline seperated>
+
+ ```
 
 ## Other Information
 
