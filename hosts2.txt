@@ -25,3 +25,4 @@ next.airbnb.com
 one.airbnb.com
 view.mail.airbnb.com
 www.airbnb.com
+admin.aws.inst.airbnb.com
