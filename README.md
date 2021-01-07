@@ -2,6 +2,8 @@
 
 This is a tool that can take a list of subdomains and more reliably check if they are valid. It works by first checking all the subdomains and creating a list of IPs the domains resolve to. Then the script tries all of the valid IP aginst all of domains that would not resolve. This techineque finds more valid subdomains than just resolving the domain names beacuse some of the subdomains might not resolve to an IP but is still hosted on the same servers as other subdomains. 
 
+![screenshot](https://github.com/grants235/IP_DNS_Tool/blob/master/image_2021-01-07_090944.png?raw=true)
+
 ## Requrements
 
 - Python 3.7
@@ -13,7 +15,6 @@ This is a tool that can take a list of subdomains and more reliably check if the
 ``` 
 python -m pip install requirements.txt
 python main.py <file of hosts newline seperated>
-
  ```
 
 ## Other Information
